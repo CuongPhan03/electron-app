@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 
-import './Component/DefaultLayout/DefaultLayout.module.css';
+import { publicRoutes } from './Routes';
 import DefaultLayout from './Component/DefaultLayout';
 
-import ProductList from './Component/Class/ProductList';
-import AddProductForm from './Component/Class/AddProductForm';
-
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: [],
-    };
-  }
-
-  handleAddProduct = (product) => {
-    this.setState({ products: [...this.state.products, product] });
-  };
-
   render() {
-    const { products } = this.state;
-
     return (
-      <DefaultLayout>
+      <Router>
         <div className="app">
-          <AddProductForm onAddProduct={this.handleAddProduct} />
-          <ProductList products={products} />
+          <Routes>
+            {publicRoutes.map((route, index) => {
+              const Page = route.component;
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <DefaultLayout>
+                      <Page />
+                    </DefaultLayout>
+                  }
+                />
+              );
+            })}
+          </Routes>
         </div>
-      </DefaultLayout>
+      </Router>
     );
   }
 }

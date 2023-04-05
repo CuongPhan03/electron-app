@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from './Sidebar.module.css';
 import classNames from 'classnames/bind';
 
@@ -5,7 +7,7 @@ const cx = classNames.bind(styles);
 function Sidebar() {
   const actions = [
     { title: 'Trang chủ', to: '/' },
-    { title: 'Xem tình trạng', to: '/view' },
+    { title: 'Xem tình trạng', to: '/status' },
     { title: 'Thêm', to: '/add' },
   ];
   return (
@@ -13,7 +15,9 @@ function Sidebar() {
       <ul className={cx('wrapper-ul')}>
         {actions.map((action, index) => (
           <li key={index}>
-            <button className={cx('btn')}>{action.title}</button>
+            <Link to={action.to} className={cx('btn')}>
+              {action.title}
+            </Link>
           </li>
         ))}
       </ul>
