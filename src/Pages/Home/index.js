@@ -1,26 +1,16 @@
 import { Component } from 'react';
 
-import AddProductForm from '../../Component/Class/AddProductForm';
-import ProductList from '../../Component/Class/ProductList';
-
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      products: [],
-    };
-  }
-
-  handleAddProduct = (product) => {
-    this.setState({ products: [...this.state.products, product] });
-  };
-
   render() {
-    const { products } = this.state;
+    const { products } = this.props;
     return (
       <div>
-        <AddProductForm onAddProduct={this.handleAddProduct} />
-        <ProductList products={products} />
+        <h2>Home Page</h2>
+        <ul>
+          {products.map((product, index) => (
+            <li key={index}>{product.name}</li>
+          ))}
+        </ul>
       </div>
     );
   }
