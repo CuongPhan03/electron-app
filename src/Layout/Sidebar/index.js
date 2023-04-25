@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import styles from './Sidebar.module.css';
 import classNames from 'classnames/bind';
@@ -17,10 +17,10 @@ function Sidebar() {
       <ul className={cx('wrapper-ul')}>
         {actions.map((action, index) => (
           <li key={index}>
-            <Link to={action.to} className={cx('link')}>
-              {action.icon}
+            <NavLink to={action.to} className={cx('link')}>
+              <span className={cx('icon')}>{action.icon}</span>
               {action.title}
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>
